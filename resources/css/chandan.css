@@ -64,6 +64,29 @@ main{
  margin:6% auto;
 }
 
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.material-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+
+}
+
+
+
+
 @media only screen and (min-width: 481px)
 	#slab-chart-legend .row > div:nth-child(3n) {
 		clear: left;
