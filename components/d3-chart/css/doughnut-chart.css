@@ -1,0 +1,17 @@
+bench-doughnut-chart {
+.doughnut-centre-text {	fill: #FFFFFF;	font-family: "HelvNeueLightforIBM";font-size: 12px;}
+
+}
+.bench-doughnut-chart-inner-text {
+    margin-top: -57px !important;
+    margin-left: 24px !important;
+}
+.skills-excess-perc {
+    fill: #ff423c;
+}
+.skills-shortage-perc {
+    fill: #6a913c;
+}
+.crit-skills-excess-perc {
+    fill: #d1a53b;
+}
