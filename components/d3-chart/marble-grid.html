@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class=" ">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DigitalTAC </title>
+<link href="css/cssreset-min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<!-- Custom Theme Style -->
+<link href="css/custom.min.css" rel="stylesheet">
+<link href="css/menu.css" rel="stylesheet">
+<link href="css/mdb.min.css" rel="stylesheet">
+<link href="css/additional.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+<link href="css/palette.css" rel="stylesheet">
+<link href="css/chandan.css" rel="stylesheet">
+<link href="css/marble-grid-chart.css" rel="stylesheet">
+
+</head>
+
+  <body class="nav-md">
+  
+
+		
+	<main>
+
+		<div class="container">
+		<div class="row">
+
+			<div class="col-lg-4 offset-lg-4 col-md-4 offset-md-4 col-sm-4 offsetsm-4 col-xs-12">
+
+			<!--Card-->
+			<div class="card">
+				<!--Card content-->
+				<div class="card-block">
+					<!--Title-->
+					<h4 class="card-title">Marble grid chart</h4>
+					<!--Text-->
+					<div id="chart-container"></div>
+					<ul class="list-unstyled">
+						<li>Version: 1.0</li>
+						<li>Author: Chandan Bora/India/IBM</li>
+						<li>Published: 11-Jan-2017</li>
+					</ul>
+
+				</div>
+				<!--/.Card content-->
+
+			</div>
+			<!--/.Card-->
+			</div>
+
+		</div>
+
+		</div>
+	</main>
+
+
+	<!-- jQuery -->
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/tether.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!-- mdbootstrap -->
+	<script src="js/mdb.min.js"></script>
+  <script src="js/d3.v3.min.js"></script>
+  <script>
+
+
+  var marbleChartData = 45;
+  var host;
+
+  var width = '100%';
+  var height = '100%';
+  var marbleRadius = 5;
+  var root;
+  var uid = "marble-"+ Math.floor(Math.random() * 90 + 10);
+
+
+  var host = d3.select(document.getElementById('chart-container'));
+
+  if (marbleChartData) {
+    createDoughnutUI("marble-"+uid );
+  }
+
+  //Draw Doughnut UI
+  function createDoughnutUI(classSuffix) {
+    var data = [];
+    for (var i =0; i< (100-marbleChartData); i ++) {
+      data.push({ state: 'gray-marble' })
+    }
+    for (; i< 100; i ++) {
+      data.push({ state: 'blue-marble' })
+    }
+
+    var svgRoot = host.append("div")
+    // .style("height", height + "px")
+    // .style("width", width + "px");
+    .style("height", height)
+    .style("width", width)
+
+    root = svgRoot.append("svg").attr("x", 0).attr("y", 0).attr("height", height)//.attr("width", width);
+    if (!root) return;
+
+    var g = root.append("g")
+        .attr("class", "pie-row" + classSuffix)
+        .attr("transform", "translate(" + marbleRadius + "," + marbleRadius + ")");
+
+      var circle = g.selectAll("circle")
+          .data(data)
+        .enter().append("circle")
+          .attr("cy", function(d, i) {
+            var y = Math.floor(i/10) * 20;
+            return y + 'px';
+          })
+          .attr("cx", function(d, i) {
+            var x = (i % 10) * 20;
+            return x + 'px';
+          })
+          .attr("r", marbleRadius)
+          .classed("blue-marble", function(d, i){
+            return d.state === 'blue-marble'
+          })
+          .classed("gray-marble", function(d, i){
+            return d.state === 'gray-marble'
+          });
+      /*
+      .data(pieLayout(data))
+      .enter().append("g")
+    g.append("path")
+      .attr("d", arc)
+      //.style("filter", isDecorable ? "url(#drop-shadow)" : "")  // using util-doughnut-chart shadow already present in DOM
+      //.style("fill", d => d.data.COLOR)
+      .style("fill", function(d) {
+        return d.data.COLOR;
+      })
+      .transition()
+      .duration(1000)
+      //.duration(400)
+      .attrTween('d', function(d) {
+        var interpolate = d3.interpolate({
+          startAngle: 0,
+          endAngle: 0
+        }, d);
+        return function(t) {
+          return arc(interpolate(t));
+        };
+      });
+      */
+  }
+
+  </script>
+
+
+</body></html>
+   
